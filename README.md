@@ -1,4 +1,4 @@
-# OrderBean PRD (Product Requirements Document)
+# OrderBean PRD (간편주문 서비스)
 
 ---
 
@@ -321,3 +321,9 @@ OrderBean/
 * **Backend**: Node.js + Express + TypeScript
 * **Database**: PostgreSQL (또는 SQLite for MVP)
 * **ORM**: Prisma 또는 TypeORM
+
+## To-Do List
+
+- TC
+- Implementation
+- Refactoring
