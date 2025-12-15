@@ -1,0 +1,28 @@
+{
+  "name": "orderbean",
+  "version": "0.1.0",
+  "private": true,
+  "description": "개인 맞춤 커피 추천 웹서비스",
+  "workspaces": [
+    "frontend",
+    "admin",
+    "backend"
+  ],
+  "scripts": {
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:admin": "cd admin && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "build:admin": "cd admin && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "build": "npm run build:frontend && npm run build:admin && npm run build:backend"
+  },
+  "keywords": [
+    "coffee",
+    "recommendation",
+    "e-commerce"
+  ],
+  "author": "",
+  "license": "MIT"
+}
+
