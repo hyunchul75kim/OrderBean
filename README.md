@@ -1,4 +1,4 @@
-# OrderBean PRD (Product Requirements Document)
+# OrderBean PRD (간편주문 서비스)
 
 ---
 
