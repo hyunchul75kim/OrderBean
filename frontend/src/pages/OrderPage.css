@@ -33,9 +33,9 @@
 
 .nav-button {
   padding: 10px 20px;
-  border: 2px solid #4a90e2;
+  border: 2px solid #8B4513;
   background-color: #ffffff;
-  color: #4a90e2;
+  color: #8B4513;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
@@ -44,17 +44,17 @@
 }
 
 .nav-button:hover {
-  background-color: #4a90e2;
+  background-color: #8B4513;
   color: #ffffff;
 }
 
 .admin-button {
-  border-color: #2c2c2c;
-  color: #2c2c2c;
+  border-color: #D2691E;
+  color: #D2691E;
 }
 
 .admin-button:hover {
-  background-color: #2c2c2c;
+  background-color: #D2691E;
   color: #ffffff;
 }
 
@@ -115,7 +115,7 @@
 .product-price {
   font-size: 18px;
   font-weight: 600;
-  color: #4a90e2;
+  color: #8B4513;
   margin-bottom: 8px;
 }
 
@@ -150,7 +150,7 @@
 
 .add-to-cart-button {
   padding: 12px 24px;
-  background-color: #4a90e2;
+  background-color: #8B4513;
   color: #ffffff;
   border: none;
   border-radius: 4px;
@@ -162,7 +162,7 @@
 }
 
 .add-to-cart-button:hover {
-  background-color: #357abd;
+  background-color: #654321;
 }
 
 .add-to-cart-button:active {
@@ -218,7 +218,7 @@
 .cart-item-price {
   font-size: 14px;
   font-weight: 600;
-  color: #4a90e2;
+  color: #8B4513;
 }
 
 .cart-total {
@@ -239,13 +239,13 @@
 .total-amount {
   font-size: 20px;
   font-weight: 700;
-  color: #4a90e2;
+  color: #8B4513;
 }
 
 .order-button {
   width: 100%;
   padding: 14px;
-  background-color: #2c2c2c;
+  background-color: #D2691E;
   color: #ffffff;
   border: none;
   border-radius: 4px;
@@ -256,7 +256,7 @@
 }
 
 .order-button:hover {
-  background-color: #1a1a1a;
+  background-color: #CD853F;
 }
 
 .order-button:active {

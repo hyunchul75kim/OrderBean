@@ -33,7 +33,7 @@ OrderBean 서비스의 관리자 화면(Admin Interface)에 대한 상세한 PRD
 
 1. **기존 PRD 문서 분석**
    - `docs/PRD_Up1.md`: 전체 제품 요구사항
-   - `docs/User_Interface_PRD.md`: 사용자 화면 PRD (참고용)
+   - `docs/Frontend_UI_PRD_Customer.md`: 사용자 화면 PRD (참고용)
 
 2. **관리자 기능 요구사항 확인**
    - FR-6: 상품 관리 (등록, 수정, 삭제)
@@ -320,7 +320,7 @@ OrderBean 서비스의 관리자 화면(Admin Interface)에 대한 상세한 PRD
 본 관리자 화면 PRD는 다음 문서들과 연계하여 사용됩니다:
 
 * `docs/PRD_Up1.md`: 전체 제품 요구사항
-* `docs/User_Interface_PRD.md`: 사용자 화면 PRD
+* `docs/Frontend_UI_PRD_Customer.md`: 사용자 화면 PRD
 
 ### 9.2 기술 스택 반영
 

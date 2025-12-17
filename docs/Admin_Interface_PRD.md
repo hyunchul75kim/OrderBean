@@ -19,7 +19,7 @@
 
 ### 1.3 제외 범위
 
-* 사용자 화면 (별도 문서: `docs/User_Interface_PRD.md`)
+* 사용자 화면 (별도 문서: `docs/Frontend_UI_PRD_Customer.md`)
 * 백엔드 API 상세 명세
 * 데이터베이스 스키마
 * 인증/인가 시스템 상세 구현
@@ -590,7 +590,7 @@ OrderBean 관리자 화면은 다음 주요 페이지로 구성됩니다:
 ### 10.2 참고 자료
 
 * OrderBean PRD (docs/PRD_Up1.md)
-* 사용자 화면 PRD (docs/User_Interface_PRD.md)
+* 사용자 화면 PRD (docs/Frontend_UI_PRD_Customer.md)
 * React 공식 문서
 * 웹 접근성 가이드라인 (WCAG 2.1)
 
