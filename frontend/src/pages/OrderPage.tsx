@@ -1,38 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ProductWithOptions } from '../../../shared/types/product.types';
+import { CartItem } from '../types/order.types';
 import './OrderPage.css';
-
-interface Product {
-  id: string;
-  name: string;
-  basePrice: number;
-  description: string;
-  customizationOptions: Array<{
-    id: string;
-    name: string;
-    price: number;
-  }>;
-}
-
-interface CartItem {
-  productId: string;
-  productName: string;
-  basePrice: number;
-  selectedOptions: Array<{
-    optionId: string;
-    optionName: string;
-    optionPrice: number;
-  }>;
-  quantity: number;
-  totalPrice: number;
-}
 
 const OrderPage: React.FC = () => {
   const navigate = useNavigate();
   const [cart, setCart] = useState<CartItem[]>([]);
 
   // 임의의 커피 메뉴 데이터
-  const products: Product[] = [
+  const products: ProductWithOptions[] = [
     {
       id: '1',
       name: '아메리카노(ICE)',
@@ -65,7 +42,7 @@ const OrderPage: React.FC = () => {
     },
   ];
 
-  const handleAddToCart = (product: Product, selectedOptions: string[]) => {
+  const handleAddToCart = (product: ProductWithOptions, selectedOptions: string[]) => {
     const selectedOptionsData = product.customizationOptions.filter((opt) =>
       selectedOptions.includes(opt.id)
     );
@@ -160,8 +137,8 @@ const OrderPage: React.FC = () => {
 };
 
 interface ProductCardProps {
-  product: Product;
-  onAddToCart: (product: Product, selectedOptions: string[]) => void;
+  product: ProductWithOptions;
+  onAddToCart: (product: ProductWithOptions, selectedOptions: string[]) => void;
   formatPrice: (price: number) => string;
 }
 
