@@ -1489,7 +1489,7 @@ OrderBean 서비스의 관리자 화면(Admin Interface)에 대한 상세한 PRD
 
 ### 4.1 생성된 파일
 
-**파일 경로**: `docs/Admin_Interface_PRD.md`
+**파일 경로**: `docs/Frontend_UI_PRD_Admin.md`
 
 **파일 정보**:
 * 총 섹션: 10개
@@ -1860,7 +1860,7 @@ OrderBean 서비스의 관리자 화면(Admin Interface)에 대한 상세한 PRD
 
 ### 4.1 생성된 파일
 
-**파일 경로**: `docs/Admin_Interface_PRD.md`
+**파일 경로**: `docs/Frontend_UI_PRD_Admin.md`
 
 **파일 정보**:
 * 총 섹션: 10개
@@ -2427,7 +2427,7 @@ OrderBean 서비스의 사용자 화면에 대한 상세한 PRD를 성공적으�
    - `report/User_Interface_PRD_Creation_Report.md` → `report/Frontend_UI_PRD_Customer_Creation_Report.md`
 
 2. **참조 업데이트**:
-   - `docs/Admin_Interface_PRD.md` (2곳)
+   - `docs/Frontend_UI_PRD_Admin.md` (2곳)
    - `report/Admin_Interface_PRD_Creation_Report.md` (2곳)
    - `report/Frontend_UI_PRD_Customer_Creation_Report.md` (1곳)
 

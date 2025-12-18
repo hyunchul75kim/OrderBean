@@ -199,7 +199,7 @@ OrderBean 서비스의 관리자 화면(Admin Interface)에 대한 상세한 PRD
 
 ### 4.1 생성된 파일
 
-**파일 경로**: `docs/Admin_Interface_PRD.md`
+**파일 경로**: `docs/Frontend_UI_PRD_Admin.md`
 
 **파일 정보**:
 * 총 섹션: 10개
