@@ -13,10 +13,10 @@ export interface OrderResponse {
 
 export const orderService = {
   createOrder: async (order: OrderRequest): Promise<OrderResponse> => {
-    return apiClient.post('/orders', order);
+    return apiClient.post<OrderResponse>('/orders', order);
   },
-  getOrder: async (orderId: string) => {
-    return apiClient.get(`/orders/${orderId}`);
+  getOrder: async (orderId: string): Promise<OrderResponse> => {
+    return apiClient.get<OrderResponse>(`/orders/${orderId}`);
   },
 };
 

@@ -12,7 +12,7 @@ export interface SurveyResponse {
 
 export const surveyService = {
   submitSurvey: async (answers: SurveyAnswer[]): Promise<SurveyResponse> => {
-    return apiClient.post('/survey', { answers });
+    return apiClient.post<SurveyResponse>('/survey', { answers });
   },
 };
 

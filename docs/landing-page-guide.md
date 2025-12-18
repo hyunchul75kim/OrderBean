@@ -122,7 +122,6 @@ Admin 서버 실행 후 터미널에 다음과 같은 메시지가 표시됩니�
   ➜  Local:   http://localhost:5174/
   ➜  Network: use --host to expose
 ```
-
 ### 주요 기능
 
 - **관리자 대시보드**: `/admin`

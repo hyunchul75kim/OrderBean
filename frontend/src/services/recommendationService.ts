@@ -9,7 +9,7 @@ export interface RecommendedProduct {
 
 export const recommendationService = {
   getRecommendations: async (surveyId: string): Promise<RecommendedProduct[]> => {
-    return apiClient.get(`/recommendations/${surveyId}`);
+    return apiClient.get<RecommendedProduct[]>(`/recommendations/${surveyId}`);
   },
 };
 
