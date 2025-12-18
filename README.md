@@ -324,6 +324,414 @@ OrderBean/
 
 ## To-Do List
 
-- TC
-- Implementation
-- Refactoring
+---
+
+## TDD 개발 단계별 작업 목록
+
+### 🔴 RED 단계 (완료)
+
+**상태**: ✅ 완료  
+**작업 내용**: 테스트 케이스 작성 및 테스트 실행
+
+- ✅ 백엔드 테스트 케이스 작성 (`backend/tests/recommendationService.test.ts`)
+- ✅ 프론트엔드 테스트 케이스 작성 (`frontend/src/services/__tests__/recommendationService.test.ts`)
+- ✅ 테스트 실행 및 결과 리포트 생성
+
+**참고 문서**:
+- `report/TDD_RED_Phase_Report.md`
+- `report/Backend_Test_Execution_Report.md`
+- `report/Frontend_RED_Phase_Test_Report.md`
+
+---
+
+### 🟢 GREEN 단계 (진행 중)
+
+**상태**: ⏳ 진행 중  
+**목표**: 모든 테스트를 통과시키는 최소한의 구현 완료
+
+#### 🔴 높은 우선순위 (즉시 구현 필요)
+
+**백엔드 작업** (4개):
+
+- [ ] **FR-BE-001: 추천 상품 조회 기능 구현**
+  - 설문 ID를 기반으로 3~5개의 추천 상품을 반환하는 기능
+  - 파일: `backend/src/services/recommendationService.ts`
+  - 검증: 반환되는 상품 개수는 3개 이상 5개 이하여야 함
+
+- [ ] **FR-BE-002: 설문 데이터 조회 기능 구현**
+  - 설문 ID로 설문 응답 데이터를 조회하는 기능
+  - 파일: `backend/src/repositories/surveyRepository.ts` (또는 새로 생성)
+  - 검증: 유효한 설문 ID에 대해 설문 데이터를 반환해야 함
+
+- [ ] **FR-BE-003: 추천 알고리즘 실행 기능 구현**
+  - 설문 응답을 기반으로 상품을 추천하는 알고리즘 실행 기능
+  - 파일: `backend/src/utils/recommendationEngine.ts`
+  - 검증: 설문 응답에 맞는 상품이 추천되어야 함
+
+- [ ] **FR-BE-004: 추천 사유 생성 기능 구현**
+  - 각 추천 상품에 대한 추천 사유를 생성하는 기능
+  - 파일: `backend/src/services/recommendationService.ts` 또는 별도 유틸리티
+  - 검증: 추천 사유는 최소 10자 이상이어야 함
+
+**프론트엔드 작업** (2개):
+
+- [ ] **FR-FE-001: API 모킹 기능 구현**
+  - 테스트에서 실제 API 호출 대신 모킹된 응답을 사용하는 기능
+  - 파일: `frontend/src/services/__tests__/recommendationService.test.ts`
+  - 검증: 테스트가 실제 네트워크 요청 없이 실행되어야 함
+  - 도구: Vitest의 `vi.mock()` 사용
+
+- [ ] **FR-FE-002: API 에러 처리 기능 구현**
+  - 네트워크 에러나 잘못된 API 응답에 대한 처리 기능
+  - 파일: `frontend/src/services/api.ts`
+  - 검증: 모든 에러 케이스에 대해 적절한 처리 및 사용자 친화적인 메시지 제공
+
+#### 🟡 중간 우선순위 (단기 구현)
+
+**백엔드 작업** (3개):
+
+- [ ] **FR-BE-005: 상품 데이터 접근 기능 구현**
+  - 추천할 상품 데이터를 조회하는 기능
+  - 파일: `backend/src/repositories/productRepository.ts` (또는 새로 생성)
+  - 검증: 모든 상품 데이터에 접근 가능해야 함
+
+- [ ] **FR-BE-006: 엣지 케이스 처리 기능 구현**
+  - 잘못된 입력값에 대한 처리 기능
+  - 입력 케이스: 잘못된 설문 ID, null/undefined, 빈 문자열
+  - 파일: `backend/src/services/recommendationService.ts`
+  - 검증: 모든 엣지 케이스에 대해 안전하게 처리되어야 함
+
+- [ ] **FR-BE-007: 에러 처리 기능 구현**
+  - 시스템 에러에 대한 처리 기능
+  - 에러 케이스: 데이터베이스 연결 실패, 설문 데이터 없음, 상품 데이터 없음
+  - 파일: `backend/src/services/recommendationService.ts`
+  - 검증: 모든 에러 케이스에 대해 명확한 에러 메시지 제공
+
+**프론트엔드 작업** (3개):
+
+- [ ] **FR-FE-003: 엣지 케이스 처리 기능 구현**
+  - 잘못된 입력값에 대한 처리 기능
+  - 입력 케이스: 빈 문자열, null/undefined, 잘못된 설문 ID 형식
+  - 파일: `frontend/src/services/recommendationService.ts`
+  - 검증: 모든 엣지 케이스에 대해 안전하게 처리
+
+- [ ] **FR-FE-004: 로딩 상태 처리 기능 구현**
+  - API 요청 중 로딩 상태를 표시하는 기능
+  - 파일: `frontend/src/components/Recommendation/` 또는 관련 컴포넌트
+  - 검증: 사용자에게 명확한 로딩 상태 피드백 제공
+
+- [ ] **FR-FE-005: 빈 상태 처리 기능 구현**
+  - 추천 결과가 없을 때의 처리 기능
+  - 파일: `frontend/src/components/Recommendation/` 또는 관련 컴포넌트
+  - 검증: 사용자에게 명확한 안내 메시지 및 대안 액션 제시
+
+#### 구현 체크리스트
+
+**🔴 높은 우선순위 (백엔드)**:
+- [ ] `recommendationService.getRecommendations()` 메서드 구현
+- [ ] 설문 데이터 조회 로직 구현
+- [ ] 추천 알고리즘 로직 구현
+- [ ] 추천 사유 생성 로직 구현
+- [ ] 모든 테스트 통과 확인
+
+**🔴 높은 우선순위 (프론트엔드)**:
+- [ ] API 모킹 설정 (`vi.mock()` 사용)
+- [ ] 에러 처리 로직 추가 (`try-catch`, 에러 메시지)
+- [ ] 모든 테스트 통과 확인
+
+**🟡 중간 우선순위 (백엔드)**:
+- [ ] 상품 데이터 접근 로직 구현
+- [ ] 엣지 케이스 처리 로직 추가
+- [ ] 에러 처리 로직 강화
+
+**🟡 중간 우선순위 (프론트엔드)**:
+- [ ] 엣지 케이스 처리 로직 추가
+- [ ] 로딩 상태 UI 컴포넌트 구현
+- [ ] 빈 상태 UI 컴포넌트 구현
+
+#### 구현 가이드
+
+**🔴 높은 우선순위 구현 순서**:
+
+**백엔드**:
+1. 설문 데이터 조회 기능 구현 (FR-BE-002)
+2. 상품 데이터 접근 기능 구현 (FR-BE-005) - 필요시
+3. 추천 알고리즘 구현 (FR-BE-003)
+4. 추천 사유 생성 기능 구현 (FR-BE-004)
+5. 추천 상품 조회 기능 통합 (FR-BE-001)
+
+**프론트엔드**:
+1. API 모킹 설정 (FR-FE-001)
+2. 에러 처리 로직 추가 (FR-FE-002)
+3. 테스트 실행 및 검증
+
+**🟡 중간 우선순위 구현 순서**:
+
+**백엔드**:
+1. 엣지 케이스 처리 기능 구현 (FR-BE-006)
+2. 에러 처리 기능 강화 (FR-BE-007)
+
+**프론트엔드**:
+1. 엣지 케이스 처리 기능 구현 (FR-FE-003)
+2. 로딩 상태 처리 기능 구현 (FR-FE-004)
+3. 빈 상태 처리 기능 구현 (FR-FE-005)
+
+**참고 문서**:
+- `report/Implementation_Requirements.md` - 상세 구현 요구사항
+- `backend/tests/recommendationService.test.ts` - 테스트 케이스
+- `frontend/src/services/__tests__/recommendationService.test.ts` - 테스트 케이스
+
+---
+
+### 🔵 REFACTOR 단계 (예정)
+
+**상태**: ⏳ 대기 중  
+**목표**: 코드 품질 개선 및 최적화
+
+**참고 문서**: `docs/Frontend_스멜분석.md` - 상세한 코드 스멜 분석 및 개선 방안
+
+#### 프론트엔드 리팩토링 작업
+
+##### 🔴 Phase 1: Critical (즉시 수정)
+
+**1. 환경 변수 사용 오류 수정**
+- [ ] `frontend/src/services/api.ts` 환경 변수 Vite 형식으로 변경
+  - `process.env.REACT_APP_API_URL` → `import.meta.env.VITE_API_URL`
+  - `.env` 파일에 `VITE_API_URL` 추가
+  - 환경 변수 타입 정의 파일 생성
+
+**2. API 클라이언트 에러 처리 완전 구현**
+- [ ] `frontend/src/services/api.ts` 에러 처리 강화
+  - HTTP 에러 상태 코드(4xx, 5xx) 처리 추가
+  - 네트워크 오류 처리 추가
+  - 응답 파싱 실패 시 에러 처리
+  - 커스텀 에러 클래스 생성 (`ApiError`, `NetworkError` 등)
+  - 타입 안정성 개선 (제네릭 사용, `any` 타입 제거)
+- [ ] `admin/src/services/adminService.ts` 에러 처리 개선
+  - 에러 타입별 처리 로직 추가
+  - 사용자 친화적인 에러 메시지 제공
+
+**3. 타입 정의 통합 및 불일치 해결**
+- [ ] `Product` 인터페이스 불일치 해결
+  - `frontend/src/pages/OrderPage.tsx`의 로컬 타입 제거
+  - `shared/types/product.types.ts` 활용 또는 타입 확장
+  - `ProductWithOptions` 같은 확장 타입 생성
+- [ ] `CartItem` 인터페이스 공통 타입으로 이동
+  - `frontend/src/types/order.types.ts` 생성 또는 기존 파일 활용
+
+##### 🔴 Phase 2: High Priority (단기 개선)
+
+**4. 중복 코드 제거**
+- [ ] `formatPrice` 함수 공통 유틸리티로 추출
+  - `shared/utils/format.ts` 또는 각 프로젝트의 `utils/format.ts` 생성
+  - `frontend/src/pages/OrderPage.tsx`에서 제거
+  - `admin/src/pages/DashboardPage.tsx`에서 제거
+- [ ] `formatDate` 함수 공통 유틸리티로 추출
+  - `admin/src/pages/DashboardPage.tsx`에서 제거
+  - 날짜 포맷팅 옵션 파라미터화
+  - `date-fns` 또는 `dayjs` 라이브러리 고려
+
+**5. 하드코딩된 데이터 제거**
+- [ ] `OrderPage.tsx`의 하드코딩된 상품 데이터 제거
+  - API 엔드포인트를 통해 동적으로 가져오기
+  - 또는 `frontend/src/constants/products.ts`로 분리
+
+**6. console 로그 제거 또는 로깅 시스템 도입**
+- [ ] `admin/src/pages/DashboardPage.tsx`의 console 제거
+  - 로깅 라이브러리 사용 (`winston`, `pino` 등)
+  - 개발 환경에서만 로깅 (`if (import.meta.env.DEV)`)
+  - 에러 모니터링 서비스 연동 (Sentry 등) 고려
+
+**7. 상태 관리 패턴 도입**
+- [ ] Context API로 장바구니 상태 관리
+  - `frontend/src/contexts/CartContext.tsx` 생성
+  - 페이지 이동 시 장바구니 데이터 유지
+  - 또는 상태 관리 라이브러리 도입 (Zustand, Jotai 등)
+  - 로컬 스토리지 연동 고려
+
+##### 🟡 Phase 3: Medium Priority (중기 개선)
+
+**8. 컴포넌트 분리**
+- [ ] `OrderPage.tsx` 컴포넌트 분리
+  - `ProductCard`를 별도 파일로 분리: `frontend/src/components/Product/ProductCard.tsx`
+  - 장바구니 관련 로직을 커스텀 훅으로 분리: `frontend/src/hooks/useCart.ts`
+  - 헤더 컴포넌트 분리
+
+**9. 환경 변수 사용 통일**
+- [ ] `admin/src/services/adminService.ts` 환경 변수 적용
+  - 하드코딩된 `/api/...` 경로를 `import.meta.env.VITE_API_URL`로 변경
+  - Vite 프로젝트에 맞는 환경 변수 형식 사용
+- [ ] 환경별 설정 파일 관리
+  - `.env.example` 파일 생성
+  - `.env.development`, `.env.production` 파일 관리
+  - 환경별 설정 가이드 문서화
+
+**10. 키(Key) 사용 개선**
+- [ ] `OrderPage.tsx`의 배열 렌더링 키 개선
+  - `index` 대신 고유 ID 사용
+  - `key={item.productId + JSON.stringify(item.selectedOptions)}` 또는 고유 ID 추가
+  - `uuid` 라이브러리 고려
+
+**11. 인라인 스타일 제거**
+- [ ] `ProductListPage.tsx` 인라인 스타일 제거
+- [ ] `ProductEditPage.tsx` 인라인 스타일 제거
+- [ ] `RecommendationConfigPage.tsx` 인라인 스타일 제거
+- CSS 파일 또는 CSS 모듈 사용으로 전환
+
+**12. 성능 최적화**
+- [ ] `useMemo`로 계산 결과 메모이제이션
+  - `calculateTotal()` 함수 최적화
+- [ ] `useCallback`으로 함수 메모이제이션
+  - `formatPrice` 등 props로 전달되는 함수 최적화
+- [ ] `React.memo`로 컴포넌트 최적화
+
+**13. 빈 폴더 정리 또는 활용**
+- [ ] 사용하지 않는 빈 폴더 제거
+  - `frontend/src/hooks/`, `frontend/src/utils/`, `frontend/src/types/`
+  - `frontend/src/components/Order/`, `Product/`, `Recommendation/`, `Survey/`
+- [ ] 또는 실제 컴포넌트로 채우기
+- [ ] 폴더 구조 재정의
+
+##### 🟢 Phase 4: Low Priority (장기 개선)
+
+**14. 불필요한 React import 제거**
+- [ ] 모든 `.tsx` 파일에서 불필요한 `import React` 제거
+- [ ] `tsconfig.json`에서 JSX 설정 확인
+
+**15. 매직 넘버/문자열 상수화**
+- [ ] `frontend/src/constants/index.ts` 생성
+- [ ] 브랜드명, 기본값 등을 상수로 관리
+- [ ] `OrderPage.tsx`의 매직 넘버 제거 (`* 1` 등)
+
+**16. 에러 바운더리 추가**
+- [ ] Error Boundary 컴포넌트 생성
+- [ ] 주요 라우트에 Error Boundary 적용
+- [ ] 에러 로깅 및 모니터링 추가
+
+**17. 로딩 상태 관리 통일**
+- [ ] 공통 로딩 컴포넌트 생성
+- [ ] 모든 비동기 작업에 로딩 상태 추가
+- [ ] Skeleton UI 고려
+
+**18. 접근성 개선**
+- [ ] 접근성 가이드라인 준수 (WCAG 2.1)
+- [ ] `aria-label`, `aria-describedby` 등 추가
+- [ ] 키보드 네비게이션 테스트
+
+**19. any 타입 제거**
+- [ ] `api.ts`의 `any` 타입 제거
+  - 제네릭 사용: `post<T>(endpoint: string, data: unknown): Promise<T>`
+  - 타입 가드 함수 사용
+  - 명시적 타입 정의
+
+**20. 미구현 컴포넌트 처리**
+- [ ] 미구현 컴포넌트들에 TODO 주석에 이슈 번호 또는 마일스톤 추가
+- [ ] 또는 기본 레이아웃 구현
+- [ ] `SurveyPage.tsx`, `RecommendationPage.tsx`, `ProductDetailPage.tsx`, `FeedbackPage.tsx` 등
+
+#### 백엔드 리팩토링 작업
+
+**백엔드**:
+- [ ] 코드 리팩토링 및 가독성 개선
+- [ ] 성능 최적화
+- [ ] 캐싱 기능 추가
+- [ ] 엣지 케이스 처리 강화
+- [ ] 에러 처리 개선
+
+#### 리팩토링 체크리스트 요약
+
+**Phase 1 (Critical)**: 3개 작업
+- [ ] 환경 변수 Vite 형식으로 변경
+- [ ] API 클라이언트 에러 처리 완전 구현
+- [ ] 타입 정의 통합 및 불일치 해결
+
+**Phase 2 (High Priority)**: 4개 작업
+- [ ] formatPrice, formatDate 유틸리티 함수 생성
+- [ ] 하드코딩된 상품 데이터 API 연동
+- [ ] console 로그 제거 또는 로깅 시스템 도입
+- [ ] 상태 관리 패턴 도입 (Context API)
+
+**Phase 3 (Medium Priority)**: 6개 작업
+- [ ] OrderPage 컴포넌트 분리
+- [ ] 환경 변수 설정 통일
+- [ ] 배열 키 사용 개선
+- [ ] 인라인 스타일 제거
+- [ ] 성능 최적화 (useMemo, useCallback)
+- [ ] 빈 폴더 정리 또는 활용
+
+**Phase 4 (Low Priority)**: 7개 작업
+- [ ] 불필요한 React import 제거
+- [ ] 상수 파일 생성 및 매직 넘버/문자열 제거
+- [ ] Error Boundary 컴포넌트 추가
+- [ ] 로딩 상태 관리 통일
+- [ ] 접근성 개선
+- [ ] any 타입 제거
+- [ ] 미구현 컴포넌트 처리
+
+#### 추가 권장 사항
+
+**1. 코드 리뷰 프로세스 도입**
+- [ ] PR 시 코드 스멜 체크리스트 활용
+- [ ] 자동화된 코드 품질 검사 도구 사용
+
+**2. ESLint 규칙 강화**
+- [ ] 중복 코드 감지 규칙 추가
+- [ ] 인라인 스타일 경고 규칙 추가
+- [ ] `@typescript-eslint/no-explicit-any` 규칙 활성화
+
+**3. 테스트 커버리지 향상**
+- [ ] 유틸리티 함수 단위 테스트
+- [ ] 컴포넌트 통합 테스트
+- [ ] API 서비스 모킹 테스트
+
+**4. 문서화 개선**
+- [ ] 컴포넌트 사용법 문서화
+- [ ] API 서비스 사용 가이드
+- [ ] 타입 정의 문서화
+
+**5. CI/CD 파이프라인 개선**
+- [ ] 코드 품질 검사 자동화
+- [ ] 타입 체크 자동화
+- [ ] 테스트 자동 실행
+
+---
+
+## 구현 우선순위 요약
+
+### 🔴 높은 우선순위 (즉시 구현 필요)
+
+**목표**: 모든 테스트를 통과시키는 최소한의 구현
+
+**백엔드** (4개):
+1. FR-BE-001: 추천 상품 조회 기능 (3~5개 반환)
+2. FR-BE-002: 설문 데이터 조회 기능
+3. FR-BE-003: 추천 알고리즘 실행 기능
+4. FR-BE-004: 추천 사유 생성 기능
+
+**프론트엔드** (2개):
+1. FR-FE-001: API 모킹 기능
+2. FR-FE-002: API 에러 처리 기능
+
+**총 6개 작업** - GREEN 단계 완료를 위해 필수
+
+---
+
+### 🟡 중간 우선순위 (단기 구현)
+
+**목표**: 프로덕션 준비를 위한 안정성 강화
+
+**백엔드** (3개):
+1. FR-BE-005: 상품 데이터 접근 기능
+2. FR-BE-006: 엣지 케이스 처리 기능
+3. FR-BE-007: 에러 처리 기능
+
+**프론트엔드** (3개):
+1. FR-FE-003: 엣지 케이스 처리 기능
+2. FR-FE-004: 로딩 상태 처리 기능
+3. FR-FE-005: 빈 상태 처리 기능
+
+**총 6개 작업** - 사용자 경험 및 안정성 개선
+
+---
+
+**자세한 내용은 `report/Implementation_Requirements.md` 참고**
