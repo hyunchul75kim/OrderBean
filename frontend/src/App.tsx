@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { CartProvider } from './contexts/CartContext';
 import HomePage from './pages/HomePage';
 import SurveyPage from './pages/SurveyPage';
 import RecommendationPage from './pages/RecommendationPage';
@@ -10,14 +11,16 @@ import './App.css';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/survey" element={<SurveyPage />} />
-      <Route path="/recommendations" element={<RecommendationPage />} />
-      <Route path="/products/:id" element={<ProductDetailPage />} />
-      <Route path="/order" element={<OrderPage />} />
-      <Route path="/feedback" element={<FeedbackPage />} />
-    </Routes>
+    <CartProvider>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/survey" element={<SurveyPage />} />
+        <Route path="/recommendations" element={<RecommendationPage />} />
+        <Route path="/products/:id" element={<ProductDetailPage />} />
+        <Route path="/order" element={<OrderPage />} />
+        <Route path="/feedback" element={<FeedbackPage />} />
+      </Routes>
+    </CartProvider>
   );
 }
 
