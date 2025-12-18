@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import { adminService, DashboardStats, InventoryItem, Order } from '../services/adminService';
 import { formatPrice, formatDate } from '../../../shared/utils/format';
+import { logger } from '../../../shared/utils/logger';
 import './DashboardPage.css';
 
 const DashboardPage: React.FC = () => {
@@ -31,10 +32,10 @@ const DashboardPage: React.FC = () => {
       setInventory(inventoryData);
       setOrders(ordersData);
     } catch (error) {
-      console.error('Failed to load data:', error);
+      logger.error('Failed to load data', error);
       // 백엔드 서버가 실행되지 않은 경우를 위한 기본값 설정
       if (error instanceof Error && error.message.includes('Failed to fetch')) {
-        console.warn('백엔드 서버가 실행되지 않았습니다. 기본값을 사용합니다.');
+        logger.warn('백엔드 서버가 실행되지 않았습니다. 기본값을 사용합니다.');
         // 기본값 설정 (선택사항)
         setStats({ total: 0, received: 0, processing: 0, completed: 0 });
         setInventory([]);
@@ -55,7 +56,7 @@ const DashboardPage: React.FC = () => {
         prev.map((item) => (item.productId === productId ? updated : item))
       );
     } catch (error) {
-      console.error('Failed to update inventory:', error);
+      logger.error('Failed to update inventory', error);
     }
   };
 
@@ -69,7 +70,7 @@ const DashboardPage: React.FC = () => {
       );
       await loadData(); // Reload stats
     } catch (error) {
-      console.error('Failed to update order status:', error);
+      logger.error('Failed to update order status', error);
     }
   };
 

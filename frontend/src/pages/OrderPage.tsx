@@ -6,6 +6,7 @@ import { formatPrice } from '../../../shared/utils/format';
 import { productService } from '../services/productService';
 import { MOCK_PRODUCTS } from '../constants/products';
 import { NetworkError, ApiError } from '../utils/errors';
+import { logger } from '../../../shared/utils/logger';
 import './OrderPage.css';
 
 const OrderPage: React.FC = () => {
@@ -27,11 +28,11 @@ const OrderPage: React.FC = () => {
       } catch (err) {
         // API 실패 시 임시 데이터 사용 (개발 환경)
         if (err instanceof NetworkError || err instanceof ApiError) {
-          console.warn('API에서 상품을 가져오는데 실패했습니다. 임시 데이터를 사용합니다.', err);
+          logger.warn('API에서 상품을 가져오는데 실패했습니다. 임시 데이터를 사용합니다.', err);
           // 이미 MOCK_PRODUCTS가 기본값으로 설정되어 있음
         } else {
           setError('상품을 불러오는데 실패했습니다.');
-          console.error('Failed to load products:', err);
+          logger.error('Failed to load products', err);
         }
       } finally {
         setLoading(false);
