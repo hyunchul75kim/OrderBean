@@ -6,7 +6,7 @@ _Exported on 12/18/2025 at 09:32:08 GMT+9 from Cursor (2.2.29)_
 **User**
 
 
-관리자화면을만들어주세요. Docs/Frontend_UI_PRD_Admin.md 문서와첨부한이미지를참고해서만들어주세요. 다음단계처럼TDD방법론으로작성해주세요.
+관리자화면을만들어주세요. Docs/Admin_Interface_PRD.md 문서와첨부한이미지를참고해서만들어주세요. 다음단계처럼TDD방법론으로작성해주세요.
 1. RED 실패하는테스트작성
 2. GREEN 최소한의코드로통과
 ↓
@@ -3319,7 +3319,7 @@ TDD 방법론을 통해 관리자 대시보드 페이지를 체계적으로 구�
 
 **User**
 
-@docs/Admin_Interface_PRD.md 이름을 Frontend_UI_PRD_Admin.md 바꿔주고 관련된 파일들도 연관되게 바꿔줄수 있을까?
+@docs/Admin_Interface_PRD.md 이름을 Admin_Interface_PRD.md 바꿔주고 관련된 파일들도 연관되게 바꿔줄수 있을까?
 
 ---
 
@@ -3951,7 +3951,7 @@ OrderBean 관리자 화면은 다음 주요 페이지로 구성됩니다:
 
 **작업 일자**: 2024  
 **구현 방법론**: TDD (RED → GREEN → REFACTOR)  
-**참고 문서**: `docs/Frontend_UI_PRD_Admin.md`
+**참고 문서**: `docs/Admin_Interface_PRD.md`
 
 ---
 
@@ -4536,7 +4536,7 @@ OrderBean 서비스의 관리자 화면(Admin Interface)에 대한 상세한 PRD
 
 ### 4.1 생성된 파일
 
-**파일 경로**: `docs/Frontend_UI_PRD_Admin.md`
+**파일 경로**: `docs/Admin_Interface_PRD.md`
 
 **파일 정보**:
 * 총 섹션: 10개
@@ -6197,7 +6197,7 @@ OrderBean 서비스의 관리자 화면(Admin Interface)에 대한 상세한 PRD
 
 ### 4.1 생성된 파일
 
-**파일 경로**: `docs/Frontend_UI_PRD_Admin.md`
+**파일 경로**: `docs/Admin_Interface_PRD.md`
 
 **파일 정보**:
 * 총 섹션: 10개
@@ -6568,7 +6568,7 @@ OrderBean 서비스의 관리자 화면(Admin Interface)에 대한 상세한 PRD
 
 ### 4.1 생성된 파일
 
-**파일 경로**: `docs/Frontend_UI_PRD_Admin.md`
+**파일 경로**: `docs/Admin_Interface_PRD.md`
 
 **파일 정보**:
 * 총 섹션: 10개
@@ -10919,7 +10919,7 @@ OrderBean 서비스의 관리자 화면(Admin Interface)에 대한 상세한 PRD
 
 ### 4.1 생성된 파일
 
-**파일 경로**: `docs/Frontend_UI_PRD_Admin.md`
+**파일 경로**: `docs/Admin_Interface_PRD.md`
 
 **파일 정보**:
 * 총 섹션: 10개
@@ -11290,7 +11290,7 @@ OrderBean 서비스의 관리자 화면(Admin Interface)에 대한 상세한 PRD
 
 ### 4.1 생성된 파일
 
-**파일 경로**: `docs/Frontend_UI_PRD_Admin.md`
+**파일 경로**: `docs/Admin_Interface_PRD.md`
 
 **파일 정보**:
 * 총 섹션: 10개
@@ -11857,7 +11857,7 @@ OrderBean 서비스의 사용자 화면에 대한 상세한 PRD를 성공적으�
    - `report/User_Interface_PRD_Creation_Report.md` → `report/Frontend_UI_PRD_Customer_Creation_Report.md`
 
 2. **참조 업데이트**:
-   - `docs/Frontend_UI_PRD_Admin.md` (2곳)
+   - `docs/Admin_Interface_PRD.md` (2곳)
    - `report/Admin_Interface_PRD_Creation_Report.md` (2곳)
    - `report/Frontend_UI_PRD_Customer_Creation_Report.md` (1곳)
 
@@ -14155,7 +14155,7 @@ OrderBean 서비스의 커피 주문하기 화면을 TDD 방법론을 따라 성
 ## 변경 사항 요약
 
 1. 파일 이름 변경
-   - `docs/Admin_Interface_PRD.md` → `docs/Frontend_UI_PRD_Admin.md`
+   - `docs/Admin_Interface_PRD.md` → `docs/Admin_Interface_PRD.md`
 
 2. 참조 업데이트된 파일들
    - `report/Admin_Dashboard_TDD_Implementation_Report.md` - 참고 문서 경로 업데이트
@@ -14165,7 +14165,7 @@ OrderBean 서비스의 커피 주문하기 화면을 TDD 방법론을 따라 성
 3. 원본 파일 삭제
    - `docs/Admin_Interface_PRD.md` 삭제 완료
 
-모든 참조가 새 파일명 `docs/Frontend_UI_PRD_Admin.md`로 업데이트되었습니다.
+모든 참조가 새 파일명 `docs/Admin_Interface_PRD.md`로 업데이트되었습니다.
 
 ---
 
@@ -14509,7 +14509,7 @@ npm run build:backend
 - [전체 설치 가이드](./installation.md)
 - [아키텍처 문서](./architecture.md)
 - [Frontend UI PRD (Customer)](./Frontend_UI_PRD_Customer.md)
-- [Frontend UI PRD (Admin)](./Frontend_UI_PRD_Admin.md)
+- [Frontend UI PRD (Admin)](./Admin_Interface_PRD.md)
 - [README.md](../README.md)
 
 ---
@@ -14855,7 +14855,7 @@ npm run build:backend
 - [전체 설치 가이드](./installation.md)
 - [아키텍처 문서](./architecture.md)
 - [Frontend UI PRD (Customer)](./Frontend_UI_PRD_Customer.md)
-- [Frontend UI PRD (Admin)](./Frontend_UI_PRD_Admin.md)
+- [Frontend UI PRD (Admin)](./Admin_Interface_PRD.md)
 - [README.md](../README.md)
 
 ---
@@ -15421,7 +15421,7 @@ export default Header;
 
 **작업 일자**: 2024  
 **구현 방법론**: TDD (RED → GREEN → REFACTOR)  
-**참고 문서**: `docs/Frontend_UI_PRD_Admin.md`  
+**참고 문서**: `docs/Admin_Interface_PRD.md`  
 **최종 수정 일자**: 2024
 
 ---
@@ -15844,7 +15844,7 @@ TDD 방법론을 통해 관리자 대시보드 페이지를 체계적으로 구�
 
 **작업 일자**: 2024  
 **구현 방법론**: TDD (RED → GREEN → REFACTOR)  
-**참고 문서**: `docs/Frontend_UI_PRD_Admin.md`  
+**참고 문서**: `docs/Admin_Interface_PRD.md`  
 **최종 수정 일자**: 2024
 
 ---
@@ -16294,7 +16294,7 @@ TDD 방법론을 통해 관리자 대시보드 페이지를 체계적으로 구�
 
 **작업 일자**: 2024  
 **구현 방법론**: TDD (RED → GREEN → REFACTOR)  
-**참고 문서**: `docs/Frontend_UI_PRD_Admin.md`  
+**참고 문서**: `docs/Admin_Interface_PRD.md`  
 **최종 수정 일자**: 2024
 
 ---

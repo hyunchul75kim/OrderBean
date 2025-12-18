@@ -6,7 +6,7 @@
 
 **작업 일자**: 2024  
 **구현 방법론**: TDD (RED → GREEN → REFACTOR)  
-**참고 문서**: `docs/Frontend_UI_PRD_Admin.md`  
+**참고 문서**: `docs/Admin_Interface_PRD.md`  
 **최종 수정 일자**: 2024
 
 ---

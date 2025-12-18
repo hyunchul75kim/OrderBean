@@ -324,7 +324,7 @@ npm run build:backend
 - [전체 설치 가이드](./installation.md)
 - [아키텍처 문서](./architecture.md)
 - [Frontend UI PRD (Customer)](./Frontend_UI_PRD_Customer.md)
-- [Frontend UI PRD (Admin)](./Frontend_UI_PRD_Admin.md)
+- [Admin Interface PRD](./Admin_Interface_PRD.md)
 - [README.md](../README.md)
 
 ---
