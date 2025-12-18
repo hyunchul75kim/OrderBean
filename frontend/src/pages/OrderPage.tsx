@@ -1,47 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProductWithOptions } from '../../../shared/types/product.types';
 import { CartItem } from '../types/order.types';
 import { formatPrice } from '../../../shared/utils/format';
+import { productService } from '../services/productService';
+import { MOCK_PRODUCTS } from '../constants/products';
+import { NetworkError, ApiError } from '../utils/errors';
 import './OrderPage.css';
 
 const OrderPage: React.FC = () => {
   const navigate = useNavigate();
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [products, setProducts] = useState<ProductWithOptions[]>(MOCK_PRODUCTS);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  // 임의의 커피 메뉴 데이터
-  const products: ProductWithOptions[] = [
-    {
-      id: '1',
-      name: '아메리카노(ICE)',
-      basePrice: 4000,
-      description: '시원한 아이스 아메리카노',
-      customizationOptions: [
-        { id: 'shot', name: '샷 추가', price: 500 },
-        { id: 'syrup', name: '시럽 추가', price: 0 },
-      ],
-    },
-    {
-      id: '2',
-      name: '아메리카노(HOT)',
-      basePrice: 4000,
-      description: '따뜻한 핫 아메리카노',
-      customizationOptions: [
-        { id: 'shot', name: '샷 추가', price: 500 },
-        { id: 'syrup', name: '시럽 추가', price: 0 },
-      ],
-    },
-    {
-      id: '3',
-      name: '카페라떼',
-      basePrice: 5000,
-      description: '부드러운 카페라떼',
-      customizationOptions: [
-        { id: 'shot', name: '샷 추가', price: 500 },
-        { id: 'syrup', name: '시럽 추가', price: 0 },
-      ],
-    },
-  ];
+  // 상품 데이터 로드
+  useEffect(() => {
+    const loadProducts = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        // API에서 상품 데이터 가져오기
+        const fetchedProducts = await productService.getProducts();
+        setProducts(fetchedProducts);
+      } catch (err) {
+        // API 실패 시 임시 데이터 사용 (개발 환경)
+        if (err instanceof NetworkError || err instanceof ApiError) {
+          console.warn('API에서 상품을 가져오는데 실패했습니다. 임시 데이터를 사용합니다.', err);
+          // 이미 MOCK_PRODUCTS가 기본값으로 설정되어 있음
+        } else {
+          setError('상품을 불러오는데 실패했습니다.');
+          console.error('Failed to load products:', err);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProducts();
+  }, []);
 
   const handleAddToCart = (product: ProductWithOptions, selectedOptions: string[]) => {
     const selectedOptionsData = product.customizationOptions.filter((opt) =>
@@ -88,14 +86,27 @@ const OrderPage: React.FC = () => {
 
       {/* Product Menu */}
       <main className="product-menu">
-        {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            onAddToCart={handleAddToCart}
-            formatPrice={formatPrice}
-          />
-        ))}
+        {loading ? (
+          <div style={{ textAlign: 'center', padding: '40px' }}>
+            <p>상품을 불러오는 중...</p>
+          </div>
+        ) : error ? (
+          <div style={{ textAlign: 'center', padding: '40px', color: '#d32f2f' }}>
+            <p>{error}</p>
+            <p style={{ fontSize: '14px', marginTop: '8px', color: '#666' }}>
+              임시 데이터를 사용합니다.
+            </p>
+          </div>
+        ) : (
+          products.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              onAddToCart={handleAddToCart}
+              formatPrice={formatPrice}
+            />
+          ))
+        )}
       </main>
 
       {/* Shopping Cart */}
