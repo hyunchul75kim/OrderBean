@@ -8,6 +8,7 @@ export interface CartItemOption {
 }
 
 export interface CartItem {
+  id?: string; // 고유 ID (선택적, 자동 생성)
   productId: string;
   productName: string;
   basePrice: number;

@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProductWithOptions } from '../../../shared/types/product.types';
-import { CartItem } from '../types/order.types';
 import { formatPrice } from '../../../shared/utils/format';
 import { productService } from '../services/productService';
 import { MOCK_PRODUCTS } from '../constants/products';
 import { NetworkError, ApiError } from '../utils/errors';
 import { logger } from '../../../shared/utils/logger';
+import { useCart } from '../contexts/CartContext';
 import './OrderPage.css';
 
 const OrderPage: React.FC = () => {
   const navigate = useNavigate();
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const { cart, addToCart, getTotal } = useCart();
   const [products, setProducts] = useState<ProductWithOptions[]>(MOCK_PRODUCTS);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -42,33 +42,6 @@ const OrderPage: React.FC = () => {
     loadProducts();
   }, []);
 
-  const handleAddToCart = (product: ProductWithOptions, selectedOptions: string[]) => {
-    const selectedOptionsData = product.customizationOptions.filter((opt) =>
-      selectedOptions.includes(opt.id)
-    );
-
-    const totalPrice =
-      (product.basePrice + selectedOptionsData.reduce((sum, opt) => sum + opt.price, 0)) * 1;
-
-    const newItem: CartItem = {
-      productId: product.id,
-      productName: product.name,
-      basePrice: product.basePrice,
-      selectedOptions: selectedOptionsData.map((opt) => ({
-        optionId: opt.id,
-        optionName: opt.name,
-        optionPrice: opt.price,
-      })),
-      quantity: 1,
-      totalPrice,
-    };
-
-    setCart([...cart, newItem]);
-  };
-
-  const calculateTotal = () => {
-    return cart.reduce((sum, item) => sum + item.totalPrice, 0);
-  };
 
   return (
     <div className="order-page">
@@ -119,7 +92,7 @@ const OrderPage: React.FC = () => {
           <>
             <div className="cart-items">
               {cart.map((item, index) => (
-                <div key={index} className="cart-item">
+                <div key={item.id || `cart-item-${index}`} className="cart-item">
                   <span className="cart-item-name">
                     {item.productName}
                     {item.selectedOptions.length > 0 &&
@@ -133,7 +106,7 @@ const OrderPage: React.FC = () => {
             </div>
             <div className="cart-total">
               <span className="total-label">총 금액</span>
-              <span className="total-amount">{formatPrice(calculateTotal())}</span>
+              <span className="total-amount">{formatPrice(getTotal())}</span>
             </div>
             <button className="order-button" onClick={() => navigate('/order/confirm')}>
               주문하기
