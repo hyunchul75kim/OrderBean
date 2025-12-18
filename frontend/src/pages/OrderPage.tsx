@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProductWithOptions } from '../../../shared/types/product.types';
 import { CartItem } from '../types/order.types';
+import { formatPrice } from '../../../shared/utils/format';
 import './OrderPage.css';
 
 const OrderPage: React.FC = () => {
@@ -68,10 +69,6 @@ const OrderPage: React.FC = () => {
 
   const calculateTotal = () => {
     return cart.reduce((sum, item) => sum + item.totalPrice, 0);
-  };
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('ko-KR').format(price) + '원';
   };
 
   return (

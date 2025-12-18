@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import { adminService, DashboardStats, InventoryItem, Order } from '../services/adminService';
+import { formatPrice, formatDate } from '../../../shared/utils/format';
 import './DashboardPage.css';
 
 const DashboardPage: React.FC = () => {
@@ -76,18 +77,6 @@ const DashboardPage: React.FC = () => {
     if (stock === 0) return '품절';
     if (stock < 5) return '주의';
     return '정상';
-  };
-
-  const formatDate = (date: Date): string => {
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    const hours = date.getHours();
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-    return `${month}월 ${day}일 ${hours}:${minutes}`;
-  };
-
-  const formatPrice = (price: number): string => {
-    return new Intl.NumberFormat('ko-KR').format(price) + '원';
   };
 
   if (loading) {
