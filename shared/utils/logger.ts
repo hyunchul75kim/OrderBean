@@ -15,7 +15,7 @@ interface LogEntry {
 /**
  * 개발 환경 여부 확인
  */
-const isDev = typeof import !== 'undefined' && import.meta.env?.DEV;
+const isDev = typeof import.meta !== 'undefined' && import.meta.env?.DEV;
 
 /**
  * 에러 모니터링 서비스 (향후 Sentry 등 연동 가능)
